@@ -1,0 +1,9 @@
+{% extends "shared/base.html" %}
+
+{% block content %}
+<div class="payment-failed">
+    <h1>Payment Failed</h1>
+    <p>Unfortunately, your payment could not be processed. Please try again or contact support if the issue persists.</p>
+    <a href="{% url 'Payment' appointment.id %}" class="btn btn-primary">Try Again</a>
+</div>
+{% endblock %}

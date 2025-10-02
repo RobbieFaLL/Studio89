@@ -1,0 +1,35 @@
+{% extends "shared/base.html" %}
+{% block content %}
+<div class="appointments-container">
+    <h1 class="text-2xl font-bold mb-4">{{ specialist.name }}'s Appointments</h1>
+
+    {% if appointments %}
+        <ul class="appointments-list">
+            {% for appointment in appointments %}
+                <li class="appointment-item mb-4 p-4 border rounded-lg bg-gray-100">
+                    <p><strong>Client:</strong> {{ appointment.user.username }}</p>
+                    <p><strong>Specialty:</strong> {{ specialist.specialty }}</p>
+                    <p><strong>Date:</strong> {{ appointment.date }}</p>
+                    <p><strong>Time:</strong> {{ appointment.time }}</p>
+                    <p><strong>Duration:</strong> {{ appointment.duration }} minutes</p>
+                    <p><strong>Status:</strong> {{ appointment.status }}</p>
+                    <p><strong>Payment Status:</strong> {{ appointment.payment_status }}</p>
+
+                    <!-- Button to cancel the appointment -->
+                    <form action="{% url 'cancel_appointment' appointment.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Cancel Appointment</button>
+                    </form>
+
+                    <!-- Link to amend the appointment -->
+                    <a href="{% url 'amend_appointment' appointment.id %}" class="btn btn-warning ml-4">
+                        Amend Appointment
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No appointments found for this specialist.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "shared/base.html" %}
+
+{% block content %}
+{% load static %}
+    <div class="logout-message">
+        <h2>You have successfully logged out.</h2>
+        <p>Thank you for using our service. We hope to see you again soon!</p>
+        <a href="{% url 'login' %}">Login Again</a>
+    </div>
+{% endblock %}

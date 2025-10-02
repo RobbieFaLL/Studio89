@@ -1,0 +1,70 @@
+{% extends "shared/base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Login</h2>
+
+<!-- Show non-field errors only if they exist -->
+{% if form.non_field_errors %}
+<div class="alert alert-danger">
+    {% for error in form.non_field_errors %}
+        <p>{{ error }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+
+<form method="POST" id="login-form">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="{{ form.username.id_for_label }}">Username or Email:</label>
+        {{ form.username }}
+        <!-- Display error for username -->
+        <div class="error" id="username-error" style="color: red;">
+            {% if form.username.errors %}
+                {% for error in form.username.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.password.id_for_label }}">Password:</label>
+        {{ form.password }}
+        <!-- Display error for password -->
+        <div class="error" id="password-error" style="color: red;">
+            {% if form.password.errors %}
+                {% for error in form.password.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <button type="submit">Login</button>
+</form>
+
+<p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+
+<!-- Forgot Password Link -->
+<p><a href="{% url 'password_reset_request' %}">Forgot your password?</a></p>
+
+<!-- Forgot Password Form (Initially hidden) -->
+<div id="forgot-password-form" style="display: none;">
+    <h3>Reset Your Password</h3>
+    <p>Enter your email address, and we'll send you a verification code to reset your password.</p>
+    <form method="POST" id="reset-password-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="reset-email">Email Address:</label>
+            <input type="email" id="reset-email" name="email" required>
+        </div>
+        <button type="submit">Send Reset Code</button>
+    </form>
+    <p id="reset-message"></p>
+</div>
+
+<script src="{% static 'login.js' %}"></script>
+
+{% endblock %}

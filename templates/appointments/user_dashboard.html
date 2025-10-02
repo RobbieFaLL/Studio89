@@ -1,0 +1,46 @@
+{% extends "shared/base.html" %}
+{% block content %}
+<div class="user-dashboard-container">
+    <h1 class="text-2xl font-bold mb-4">Welcome, {{ user.username }}!</h1>
+
+    <div class="appointments-section">
+        <h2 class="text-xl font-semibold mb-2">Your Appointments</h2>
+        {% if client_appointments %}
+        <ul class="appointments-list">
+            {% for appointment in client_appointments %}
+            <li class="appointment-item mb-4 p-4 border rounded-lg bg-gray-100">
+                <p><strong>Specialist:</strong> {{ appointment.specialist.name }}</p>
+                <p><strong>Specialty:</strong> {{ appointment.specialist.specialty }}</p>
+                <p><strong>Date:</strong> {{ appointment.date }}</p>
+    
+                <!-- Amend Time Inline with Time -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <p><strong>Time:</strong> {{ appointment.time }}</p>
+                    <a href="{% url 'amend_appointment' appointment.id %}" class="btn btn-warning">Amend Time</a>
+                </div>
+    
+                <p><strong>Duration:</strong> {{ appointment.duration }} minutes</p>
+                <p><strong>Status:</strong> {{ appointment.status }}</p>
+                <p><strong>Payment Status:</strong> {{ appointment.payment_status }}</p>
+    
+                <!-- Cancel Button at the Bottom of the Card -->
+                <form action="{% url 'cancel_appointment' appointment.id %}" method="post" style="display:inline; width: 100%;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger w-100 mt-4">Cancel</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>You have no appointments yet. <a href="{% url 'Booking' %}" class="text-blue-500">Book an appointment now</a>.</p>
+        {% endif %}
+    </div>
+
+    <div class="manage-appointments mt-6">
+        <h2 class="text-xl font-semibold mb-2">Manage Appointments</h2>
+        <a href="{% url 'Booking' %}" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+            Book a New Appointment
+        </a>
+    </div>
+</div>
+{% endblock %}

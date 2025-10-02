@@ -1,0 +1,11 @@
+{% extends "shared/base.html" %}
+
+{% block content %}
+<h1>Book an Appointment</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Render the form fields as paragraphs -->
+    <button type="submit">Book Appointment</button>
+</form>
+{% endblock %}

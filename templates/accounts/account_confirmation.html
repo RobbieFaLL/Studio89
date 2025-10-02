@@ -1,0 +1,87 @@
+<html>
+    <style>
+        /* account_confirmation.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    padding: 40px;
+    margin: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    font-size: 28px;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+footer {
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+    margin-top: 30px;
+}
+
+footer a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 25px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:focus {
+    outline: none;
+}
+
+</style>
+
+<body>
+    <div class="container">
+        <h2>Welcome to Studio 89!</h2>
+        <p>Hello {{ user.first_name }} {{ user.last_name }},</p>
+        <p>Thank you for signing up with Studio 89. We're excited to have you join us! We can't wait to help you discover all the amazing services we offer.</p>
+        <p>If you have any questions, feel free to reach out to our support team at any time.</p>
+        <button>Get Started</button>
+        <footer>
+            <p>Best regards,</p>
+            <p>The Studio 89 Team</p>
+            <p><a href="mailto:siteadmin@robbiefallcycles.cc">Contact Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>

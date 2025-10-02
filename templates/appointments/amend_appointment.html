@@ -1,0 +1,66 @@
+{% extends "shared/base.html" %}
+{% block content %}
+<div class="amend-appointment-container max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-4">Amend Appointment</h1>
+    
+    <form action="{% url 'amend_appointment' appointment.id %}" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        
+        <!-- Specialist Field (Disabled, but Hidden Input for Submission) -->
+        <div class="form-group mb-4">
+            <label for="{{ form.specialist.id_for_label }}" class="block text-lg font-semibold">Specialist</label>
+            {{ form.specialist }}
+            <input type="hidden" name="specialist" value="{{ appointment.specialist.id }}">
+        </div>
+
+        <!-- Date Field -->
+        <div class="form-group mb-4">
+            <label for="{{ form.date.id_for_label }}" class="block text-lg font-semibold">Date</label>
+            {{ form.date }}
+        </div>
+
+        <!-- Time Field -->
+        <div class="form-group mb-4">
+            <label for="{{ form.time.id_for_label }}" class="block text-lg font-semibold">Time</label>
+            {{ form.time }}
+        </div>
+
+        <!-- Duration Field -->
+        <div class="form-group mb-4">
+            <label for="{{ form.duration.id_for_label }}" class="block text-lg font-semibold">Duration</label>
+            {{ form.duration }}
+        </div>
+
+        <!-- Status Field (If Present) -->
+        {% if form.status %}
+        <div class="form-group mb-4">
+            <label for="{{ form.status.id_for_label }}" class="block text-lg font-semibold">Status</label>
+            {{ form.status }}
+        </div>
+        {% endif %}
+
+        <!-- Payment Status Field (If Present) -->
+        {% if form.payment_status %}
+        <div class="form-group mb-4">
+            <label for="{{ form.payment_status.id_for_label }}" class="block text-lg font-semibold">Payment Status</label>
+            {{ form.payment_status }}
+        </div>
+        {% endif %}
+
+        <!-- Submit Button -->
+        <div class="form-group mb-4">
+            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 w-full">
+                Save Changes
+            </button>
+        </div>
+    </form>
+
+    <!-- Cancel Link -->
+    <div class="text-center mt-4">
+        <a href="{% url 'view_appointments' appointment.specialist.id %}" class="text-red-500 hover:text-red-600">
+            Cancel
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+
+{% extends "shared/base.html" %}
+{% block content %}
+
+<p>Amount: £{{ appointment.total_price }}</p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <script
+        src="https://checkout.stripe.com/checkout.js"
+        class="stripe-button"
+        data-key="pk_test_51LudxPD01Kkaoc53yr9fWfBJTGvcXqPsZNyKKrfr6yJULpsFUG85AFQ95XjXLTs1NWxHxfCWcKyXMNNTq6B2MIlt00aS7FxkFk"
+        data-amount="{{ amount_in_pence }}"
+        data-name="Studio 89 Appointment"
+        data-description="Payment for appointment with {{ appointment.specialist.name }}"
+        data-currency="gbp">
+    </script>
+</form>
+
+{% endblock %}

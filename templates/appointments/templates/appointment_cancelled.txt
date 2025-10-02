@@ -1,0 +1,8 @@
+Dear {{ user.username }},
+
+We regret to inform you that your appointment with {{ appointment.specialist.name }} on {{ appointment.date }} at {{ appointment.time }} has been cancelled.
+
+If you have any questions, feel free to reach out to us.
+
+Best regards,
+The Studio 89 Team

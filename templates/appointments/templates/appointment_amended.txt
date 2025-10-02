@@ -1,0 +1,10 @@
+Dear {{ user.username }},
+
+Your appointment with {{ appointment.specialist.name }} has been amended.
+
+New Time: {{ appointment.time }}
+
+If you have any questions, feel free to reach out to us.
+
+Best regards,
+The Studio 89 Team
