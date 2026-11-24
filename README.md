@@ -27,8 +27,8 @@ Studio89 is a Django-based web application designed as a self-care space booking
 
 1. **Clone the repository:**
    ```sh
-   git clone <your-repo-url>
-   cd Studio89
+   git clone https://github.com/RobbieFaLL/Studio89
+   cd Studio89>
    ```
 
 2. **Create your environment file:**
